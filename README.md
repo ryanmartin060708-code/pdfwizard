@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF Wizard — Modern Image to PDF Converter
 
-## Getting Started
+![PDF Wizard Hero Screenshot Placeholder](./public/preview-banner.png)
 
-First, run the development server:
+A modern, fast, and production-ready **Image to PDF Converter** web application inspired by **Vercel** and **Apple** minimalist design principles. Convert single or batch images into clean, downloadable PDF documents 100% locally in your browser with zero server uploads.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## ✨ Features
+
+- **100% Private & Client-Side**: All rendering and PDF compilation happen locally using HTML5 Canvas & `pdf-lib`. No files ever leave your device.
+- **Universal Image Format Support**:
+  - `JPG` / `JPEG`
+  - `PNG`
+  - `WEBP`
+  - `BMP`
+  - `GIF`
+  - `TIFF`
+  - `AVIF`
+  - `HEIC` / `HEIF` (where browser supported)
+- **Drag-and-Drop Reordering**: Rearrange pages using fluid spring drag-and-drop animations powered by `@dnd-kit`.
+- **Image Editing & Previews**:
+  - Live thumbnail specs (dimensions in px and file size).
+  - Quick 90° clockwise/counter-clockwise rotation.
+  - Interactive crop modal with preset aspect ratios (`Free`, `1:1`, `4:3`, `16:9`, `3:2`).
+  - High-res zoom preview lightbox.
+- **Customizable PDF Settings**:
+  - **Page Sizes**: `A4`, `Letter`, `Legal`, `A3`, `Auto` (matches native image aspect).
+  - **Orientation**: `Portrait`, `Landscape`, `Auto`.
+  - **Margins**: `None (0mm)`, `Small (5mm)`, `Medium (10mm)`, `Large (20mm)`.
+  - **Image Fit Modes**: `Fit (Contain)`, `Fill (Stretch)`, `Original (1:1)`, `Cover`.
+  - **Compression Quality**: `High (100%)`, `Medium (80%)`, `Low (60%)`.
+  - **Page Numbers**: Customizable position (`None`, `Bottom Center`, `Bottom Right`, `Top Right`).
+  - **PDF Metadata**: Title, Author, Subject, Producer.
+  - **Live Output Size Estimation**: Calculates estimated PDF file size in real time.
+  - **Settings Persistence**: Saves your preferences in `localStorage`.
+- **Pre-download Preview**: In-browser live PDF viewer modal before exporting.
+- **Dark & Light Themes**: Seamless Apple-style theme switching with `next-themes`.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router, Client Components)
+- **Language**: TypeScript (Strict Mode)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Drag & Drop**: `react-dropzone` & `@dnd-kit/core`
+- **PDF Engine**: `pdf-lib`
+- **Crop Engine**: `react-easy-crop`
+- **Icons**: Lucide React
+- **Theme**: `next-themes`
+
+---
+
+## 📁 Project Structure
+
+```
+pdfwizard/
+├── app/
+│   ├── layout.tsx             # Root layout with Geist font & ThemeProvider
+│   ├── page.tsx               # Main entry page
+│   └── globals.css            # Vercel monochrome design tokens & custom utilities
+├── components/
+│   ├── header.tsx             # Navigation header with logo & theme toggle
+│   ├── hero-section.tsx       # Vercel-inspired typography hero section
+│   ├── dropzone-area.tsx      # Drag & drop upload area
+│   ├── image-grid.tsx         # Sortable thumbnail grid
+│   ├── image-card.tsx         # Image item card with specs & action buttons
+│   ├── pdf-settings-panel.tsx # PDF configuration panel
+│   ├── image-crop-modal.tsx   # Interactive crop modal
+│   ├── image-preview-modal.tsx# High-res zoom preview modal
+│   ├── pdf-preview-modal.tsx  # PDF preview before download modal
+│   ├── progress-modal.tsx     # Animated conversion progress modal
+│   └── footer.tsx             # Minimal footer
+├── hooks/
+│   ├── use-image-converter.ts # Central state management hook
+│   └── use-local-storage.ts   # Persistent settings hook
+├── lib/
+│   ├── pdf-generator.ts       # pdf-lib synthesis engine
+│   ├── image-utils.ts         # Canvas conversion, rotation, crop & metadata utils
+│   └── constants.ts           # Page presets & limits
+├── types/
+│   └── converter.ts           # TypeScript interfaces
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+- Node.js 18.0 or later
+- npm or pnpm / yarn
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone repository:
+   ```bash
+   git clone https://github.com/your-username/pdfwizard.git
+   cd pdfwizard
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+3. Run development server:
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌐 Deployment on Vercel
+
+The application is built for 1-click deployment on **Vercel**:
+
+1. Push your repository to GitHub.
+2. Import the project into Vercel Dashboard.
+3. Keep default settings (`Framework Preset: Next.js`).
+4. Click **Deploy**.
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] OCR text extraction from uploaded images into PDF text layer.
+- [ ] Drag-and-drop watermark overlay onto generated PDF pages.
+- [ ] Password encryption & PDF permissions.
+- [ ] Multi-PDF merger and page re-ordering.
+
+---
+
+## 📄 License
+
+MIT License. Open source for personal and commercial usage.

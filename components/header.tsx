@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { FileText, Sun, Moon, ShieldCheck, Github } from 'lucide-react';
+import { FileText, Sun, Moon, ShieldCheck, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function Header() {
@@ -58,7 +58,7 @@ export function Header() {
             className="p-2 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800/70 transition-all flex items-center gap-1.5 text-xs font-medium"
             aria-label="GitHub Repository"
           >
-            <Github className="w-4 h-4" />
+            <Code2 className="w-4 h-4" />
             <span className="hidden sm:inline">GitHub</span>
           </a>
         </div>
