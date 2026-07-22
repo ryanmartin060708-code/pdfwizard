@@ -1,6 +1,5 @@
 # PDF Wizard — Modern Image to PDF Converter https://pdfwizard-murex.vercel.app/
 
-![PDF Wizard Hero Screenshot Placeholder](C:\Users\ryanm\Pictures\Screenshots\Screenshot 2026-07-22 224646.png)
 
 A modern, fast, and production-ready **Image to PDF Converter** web application inspired by **Vercel** and **Apple** minimalist design principles. Convert single or batch images into clean, downloadable PDF documents 100% locally in your browser with zero server uploads.
 
