@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { FileText, Sun, Moon, ShieldCheck, Code2 } from 'lucide-react';
+import { Sun, Moon, ShieldCheck, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { WizardLogo } from './wizard-logo';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -19,7 +20,7 @@ export function Header() {
         {/* Brand Logo */}
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-black shadow-sm">
-            <FileText className="w-5 h-5 stroke-[2.2]" />
+            <WizardLogo className="w-5 h-5" />
           </div>
           <div>
             <span className="font-bold text-lg tracking-tight text-neutral-900 dark:text-neutral-50">

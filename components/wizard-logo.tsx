@@ -1,0 +1,21 @@
+'use client';
+
+import React from 'react';
+
+interface WizardLogoProps {
+  className?: string;
+}
+
+export function WizardLogo({ className = 'w-5 h-5' }: WizardLogoProps) {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M 34.5 36.8 C 36.5 48.5, 48.5 45.5, 85.0 34.0 C 44.0 54.0, 37.0 58.0, 31.5 67.5 C 29.5 57.5, 23.5 56.5, 15.0 58.2 C 26.5 50.5, 29.5 46.5, 34.5 36.8 Z" />
+    </svg>
+  );
+}
