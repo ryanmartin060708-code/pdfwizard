@@ -40,6 +40,13 @@ export function ConverterWorkspace() {
   const [activeZoomItem, setActiveZoomItem] = useState<ImageItem | null>(null);
   const [isPreviewPdfOpen, setIsPreviewPdfOpen] = useState(false);
 
+  const handleConvert = async () => {
+    const res = await convertToPdf();
+    if (res?.url) {
+      setIsPreviewPdfOpen(true);
+    }
+  };
+
   const hasImages = images.length > 0;
 
   return (
@@ -106,7 +113,7 @@ export function ConverterWorkspace() {
                   settings={settings}
                   onChange={updateSettings}
                   onReset={resetSettings}
-                  onConvert={convertToPdf}
+                  onConvert={handleConvert}
                   onDownload={downloadPdf}
                   onPreview={() => setIsPreviewPdfOpen(true)}
                   isConverting={progress.isConverting}
@@ -134,6 +141,7 @@ export function ConverterWorkspace() {
       />
 
       <PdfPreviewModal
+        isOpen={isPreviewPdfOpen}
         pdfUrl={pdfResult?.url || null}
         filename={settings.outputFilename || 'converted_images.pdf'}
         onClose={() => setIsPreviewPdfOpen(false)}
