@@ -4,7 +4,7 @@ import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UploadCloud, ImagePlus, FileCheck } from 'lucide-react';
-import { SUPPORTED_MIME_TYPES, SUPPORTED_EXTENSIONS } from '@/lib/constants';
+import { SUPPORTED_EXTENSIONS } from '@/lib/constants';
 
 interface DropzoneAreaProps {
   onFilesAdded: (files: File[]) => void;
@@ -36,10 +36,10 @@ export function DropzoneArea({ onFilesAdded, hasImages }: DropzoneAreaProps) {
         {...getRootProps()}
         className={`relative group cursor-pointer overflow-hidden rounded-2xl border-2 border-dashed transition-all duration-300 ${
           isDragActive
-            ? 'border-neutral-900 dark:border-neutral-100 bg-neutral-100/80 dark:bg-neutral-900/80 scale-[1.005] shadow-xl'
+            ? 'border-neutral-900 dark:border-neutral-100 bg-neutral-100 dark:bg-neutral-900/90 scale-[1.005] shadow-xl'
             : hasImages
-            ? 'border-neutral-300 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-950/50 p-6'
-            : 'border-neutral-300 dark:border-neutral-800 hover:border-neutral-900 dark:hover:border-neutral-400 bg-neutral-50/80 dark:bg-neutral-950/80 p-10 md:p-14 shadow-apple'
+            ? 'border-neutral-300 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/60 p-6 shadow-apple'
+            : 'border-neutral-300 dark:border-neutral-800 hover:border-neutral-800 dark:hover:border-neutral-400 bg-white dark:bg-neutral-900/60 p-10 md:p-14 shadow-apple'
         }`}
       >
         <input {...getInputProps()} />
@@ -52,7 +52,7 @@ export function DropzoneArea({ onFilesAdded, hasImages }: DropzoneAreaProps) {
             className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
               isDragActive
                 ? 'bg-neutral-900 text-white dark:bg-white dark:text-black shadow-lg'
-                : 'bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-800 shadow-sm group-hover:scale-105'
+                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-700 shadow-xs group-hover:scale-105'
             }`}
           >
             {isDragActive ? (
@@ -64,10 +64,10 @@ export function DropzoneArea({ onFilesAdded, hasImages }: DropzoneAreaProps) {
 
           {/* Text Instructions */}
           <div className="space-y-1">
-            <h3 className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+            <h3 className="text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
               {isDragActive ? 'Drop images here' : 'Drag & drop your images here'}
             </h3>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-sm font-medium">
               Supports JPG, PNG, WEBP, BMP, GIF, TIFF, AVIF & HEIC up to 25MB each
             </p>
           </div>
@@ -80,7 +80,7 @@ export function DropzoneArea({ onFilesAdded, hasImages }: DropzoneAreaProps) {
                 e.stopPropagation();
                 open();
               }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-black font-medium text-sm transition-all shadow-sm active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-black font-semibold text-sm transition-all shadow-md active:scale-95 cursor-pointer"
             >
               <ImagePlus className="w-4 h-4" />
               <span>Browse Files</span>

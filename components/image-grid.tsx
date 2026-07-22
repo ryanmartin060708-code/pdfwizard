@@ -71,14 +71,14 @@ export function ImageGrid({
   return (
     <div className="space-y-4 w-full">
       {/* Workspace Header Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-1 py-2 border-b border-neutral-200/80 dark:border-neutral-800/80">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-1 py-2 border-b border-neutral-200 dark:border-neutral-800">
         {/* Count & Combined Specs */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 text-xs font-semibold text-neutral-800 dark:text-neutral-200">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 text-xs font-bold text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800">
             <Layers className="w-3.5 h-3.5" />
             <span>{images.length} {images.length === 1 ? 'Page' : 'Pages'}</span>
           </div>
-          <span className="text-xs text-neutral-500 font-mono">
+          <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono font-medium">
             ({formatBytes(totalBytes)})
           </span>
         </div>
@@ -89,30 +89,30 @@ export function ImageGrid({
           <div className="relative group">
             <button
               type="button"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-800/70 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer shadow-2xs"
             >
               <ArrowUpDown className="w-3.5 h-3.5" />
               <span>Sort Pages</span>
             </button>
-            <div className="absolute right-0 mt-1 w-36 py-1 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-30">
+            <div className="absolute right-0 mt-1 w-38 py-1 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-30">
               <button
                 type="button"
                 onClick={() => onSort('name')}
-                className="w-full text-left px-3 py-1.5 text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                className="w-full text-left px-3 py-1.5 text-xs font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
               >
                 By Name (A-Z)
               </button>
               <button
                 type="button"
                 onClick={() => onSort('size')}
-                className="w-full text-left px-3 py-1.5 text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                className="w-full text-left px-3 py-1.5 text-xs font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
               >
                 By Size (Largest)
               </button>
               <button
                 type="button"
                 onClick={() => onSort('reverse')}
-                className="w-full text-left px-3 py-1.5 text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                className="w-full text-left px-3 py-1.5 text-xs font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
               >
                 Reverse Order
               </button>
@@ -123,7 +123,7 @@ export function ImageGrid({
           <button
             type="button"
             onClick={onClearAll}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-xs font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors cursor-pointer shadow-2xs"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Clear All</span>

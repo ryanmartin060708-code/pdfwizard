@@ -4,10 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Settings,
-  FileText,
-  Layout,
-  Maximize,
-  SlidersHorizontal,
   Download,
   Eye,
   RefreshCw,
@@ -47,21 +43,21 @@ export function PdfSettingsPanel({
   const [isAdvancedOpen, setIsAdvancedOpen] = React.useState(false);
 
   return (
-    <div className="w-full bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800/90 rounded-2xl p-5 shadow-apple space-y-6">
+    <div className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-5 shadow-apple space-y-6">
       {/* Panel Header */}
       <div className="flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800 pb-3.5">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200">
+          <div className="p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100">
             <Settings className="w-4 h-4" />
           </div>
-          <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
+          <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-50">
             PDF Document Settings
           </h2>
         </div>
         <button
           type="button"
           onClick={onReset}
-          className="text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors flex items-center gap-1"
+          className="text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors flex items-center gap-1 cursor-pointer font-medium"
           title="Reset to default settings"
         >
           <RefreshCw className="w-3 h-3" />
@@ -69,26 +65,26 @@ export function PdfSettingsPanel({
         </button>
       </div>
 
-      {/* Settings Grid / Accordion */}
+      {/* Settings Grid */}
       <div className="space-y-5">
         {/* 1. Page Size */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300 flex items-center justify-between">
+          <label className="text-xs font-semibold text-neutral-800 dark:text-neutral-200 flex items-center justify-between">
             <span>Page Size</span>
-            <span className="text-[11px] font-mono text-neutral-400">
+            <span className="text-[11px] font-mono text-neutral-500">
               {settings.pageSize === 'AUTO' ? 'Matches Image' : PAGE_SIZES[settings.pageSize as keyof typeof PAGE_SIZES]?.description}
             </span>
           </label>
-          <div className="grid grid-cols-5 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="grid grid-cols-5 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80">
             {(['A4', 'LETTER', 'LEGAL', 'A3', 'AUTO'] as PageSizePreset[]).map((size) => (
               <button
                 key={size}
                 type="button"
                 onClick={() => onChange({ pageSize: size })}
-                className={`py-1.5 text-xs font-medium rounded-lg transition-all ${
+                className={`py-1.5 text-xs rounded-lg transition-all cursor-pointer ${
                   settings.pageSize === size
-                    ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-black shadow-xs font-semibold'
+                    : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium'
                 }`}
               >
                 {size === 'LETTER' ? 'Letter' : size === 'LEGAL' ? 'Legal' : size}
@@ -99,19 +95,19 @@ export function PdfSettingsPanel({
 
         {/* 2. Orientation */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+          <label className="text-xs font-semibold text-neutral-800 dark:text-neutral-200">
             Page Orientation
           </label>
-          <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80">
             {(['PORTRAIT', 'LANDSCAPE', 'AUTO'] as PageOrientation[]).map((orient) => (
               <button
                 key={orient}
                 type="button"
                 onClick={() => onChange({ orientation: orient })}
-                className={`py-1.5 text-xs font-medium rounded-lg capitalize transition-all ${
+                className={`py-1.5 text-xs capitalize transition-all cursor-pointer ${
                   settings.orientation === orient
-                    ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-black shadow-xs font-semibold'
+                    : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium'
                 }`}
               >
                 {orient.toLowerCase()}
@@ -122,22 +118,22 @@ export function PdfSettingsPanel({
 
         {/* 3. Margins */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300 flex items-center justify-between">
+          <label className="text-xs font-semibold text-neutral-800 dark:text-neutral-200 flex items-center justify-between">
             <span>Margins</span>
-            <span className="text-[11px] font-mono text-neutral-400">
+            <span className="text-[11px] font-mono text-neutral-500">
               {MARGINS[settings.margin].description}
             </span>
           </label>
-          <div className="grid grid-cols-4 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="grid grid-cols-4 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80">
             {(['NONE', 'SMALL', 'MEDIUM', 'LARGE'] as MarginPreset[]).map((m) => (
               <button
                 key={m}
                 type="button"
                 onClick={() => onChange({ margin: m })}
-                className={`py-1.5 text-xs font-medium rounded-lg capitalize transition-all ${
+                className={`py-1.5 text-xs capitalize transition-all cursor-pointer ${
                   settings.margin === m
-                    ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-black shadow-xs font-semibold'
+                    : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium'
                 }`}
               >
                 {m.toLowerCase()}
@@ -148,19 +144,19 @@ export function PdfSettingsPanel({
 
         {/* 4. Image Fit Mode */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+          <label className="text-xs font-semibold text-neutral-800 dark:text-neutral-200">
             Image Layout & Fit
           </label>
-          <div className="grid grid-cols-4 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="grid grid-cols-4 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80">
             {(['CONTAIN', 'FILL', 'ORIGINAL', 'COVER'] as ImageFitMode[]).map((mode) => (
               <button
                 key={mode}
                 type="button"
                 onClick={() => onChange({ fitMode: mode })}
-                className={`py-1.5 text-xs font-medium rounded-lg capitalize transition-all ${
+                className={`py-1.5 text-xs capitalize transition-all cursor-pointer ${
                   settings.fitMode === mode
-                    ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-black shadow-xs font-semibold'
+                    : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium'
                 }`}
               >
                 {mode === 'CONTAIN' ? 'Fit' : mode.toLowerCase()}
@@ -171,22 +167,22 @@ export function PdfSettingsPanel({
 
         {/* 5. Image Compression / Quality */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs font-medium text-neutral-700 dark:text-neutral-300">
+          <div className="flex items-center justify-between text-xs font-semibold text-neutral-800 dark:text-neutral-200">
             <span>Compression Quality</span>
             <span className="font-mono text-neutral-500">
               {Math.round(settings.quality * 100)}%
             </span>
           </div>
-          <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80">
             {([1.0, 0.8, 0.6] as QualityPreset[]).map((q) => (
               <button
                 key={q}
                 type="button"
                 onClick={() => onChange({ quality: q })}
-                className={`py-1.5 text-xs font-medium rounded-lg transition-all ${
+                className={`py-1.5 text-xs transition-all cursor-pointer ${
                   settings.quality === q
-                    ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white shadow-xs font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-black shadow-xs font-semibold'
+                    : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium'
                 }`}
               >
                 {q === 1.0 ? 'High (100%)' : q === 0.8 ? 'Medium (80%)' : 'Low (60%)'}
@@ -200,7 +196,7 @@ export function PdfSettingsPanel({
           <button
             type="button"
             onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
-            className="w-full flex items-center justify-between py-1 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+            className="w-full flex items-center justify-between py-1 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors cursor-pointer"
           >
             <span>Advanced PDF Settings (Page Numbers, Title, Filename)</span>
             {isAdvancedOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -215,26 +211,26 @@ export function PdfSettingsPanel({
             >
               {/* Output Filename */}
               <div className="space-y-1">
-                <label className="text-[11px] font-medium text-neutral-600 dark:text-neutral-400">
+                <label className="text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
                   Output Filename
                 </label>
                 <input
                   type="text"
                   value={settings.outputFilename}
                   onChange={(e) => onChange({ outputFilename: e.target.value })}
-                  className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-neutral-100"
+                  className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-neutral-100 font-medium"
                 />
               </div>
 
               {/* Page Numbers */}
               <div className="space-y-1">
-                <label className="text-[11px] font-medium text-neutral-600 dark:text-neutral-400">
+                <label className="text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
                   Page Numbering Position
                 </label>
                 <select
                   value={settings.pageNumbers}
                   onChange={(e) => onChange({ pageNumbers: e.target.value as PageNumberPosition })}
-                  className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none"
+                  className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none font-medium cursor-pointer"
                 >
                   <option value="NONE">No Page Numbers</option>
                   <option value="BOTTOM_CENTER">Bottom Center</option>
@@ -246,18 +242,18 @@ export function PdfSettingsPanel({
               {/* Title & Author */}
               <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-neutral-600 dark:text-neutral-400">
+                  <label className="text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
                     PDF Document Title
                   </label>
                   <input
                     type="text"
                     value={settings.title}
                     onChange={(e) => onChange({ title: e.target.value })}
-                    className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none"
+                    className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none font-medium"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[11px] font-medium text-neutral-600 dark:text-neutral-400">
+                  <label className="text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
                     Author / Creator
                   </label>
                   <input
@@ -265,7 +261,7 @@ export function PdfSettingsPanel({
                     value={settings.author}
                     onChange={(e) => onChange({ author: e.target.value })}
                     placeholder="Optional"
-                    className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none"
+                    className="w-full px-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none font-medium"
                   />
                 </div>
               </div>
@@ -277,7 +273,7 @@ export function PdfSettingsPanel({
       {/* Specs Bar (Estimated File Size) */}
       <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs font-mono text-neutral-500">
         <span>Est. Output Size:</span>
-        <span className="font-semibold text-neutral-800 dark:text-neutral-200">
+        <span className="font-semibold text-neutral-900 dark:text-neutral-100">
           {formatBytes(estimatedSizeBytes)}
         </span>
       </div>
@@ -290,7 +286,7 @@ export function PdfSettingsPanel({
             <button
               type="button"
               onClick={onPreview}
-              className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium text-sm transition-all shadow-xs active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 font-semibold text-sm transition-all shadow-xs active:scale-[0.98] cursor-pointer"
             >
               <Eye className="w-4 h-4" />
               <span>Preview</span>
@@ -300,7 +296,7 @@ export function PdfSettingsPanel({
             <button
               type="button"
               onClick={onDownload}
-              className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-100 text-white dark:text-black font-semibold text-sm transition-all shadow-md active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-100 text-white dark:text-black font-semibold text-sm transition-all shadow-md active:scale-[0.98] cursor-pointer"
             >
               <Download className="w-4 h-4" />
               <span>Download PDF</span>
@@ -311,7 +307,7 @@ export function PdfSettingsPanel({
             type="button"
             disabled={imageCount === 0 || isConverting}
             onClick={onConvert}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-100 disabled:opacity-50 disabled:cursor-not-allowed text-white dark:text-black font-semibold text-sm transition-all shadow-md active:scale-[0.98]"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-100 disabled:opacity-50 disabled:cursor-not-allowed text-white dark:text-black font-bold text-sm transition-all shadow-md active:scale-[0.98] cursor-pointer"
           >
             {isConverting ? (
               <>
