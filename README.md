@@ -98,7 +98,7 @@ pdfwizard/
 
 1. Clone repository:
    ```bash
-   git clone https://github.com/your-username/pdfwizard.git
+   git clone https://github.com/ryanmartin060708-code/pdfwizard.git
    cd pdfwizard
    ```
 
